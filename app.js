@@ -1,67 +1,54 @@
-// class Task { 
-//     constructor(userText) {    
-//         this.userText = userText;
-//     }
+// const listItem = document.createElement("li");
+// listItem.setAttribute('class', 'task');
+// listItem.target.appendChild(listItem);
+// console.log("Task was created.");
 
-//     createTask() {
-//         const listItem = document.createElement("li");
-//         listItem.setAttribute('class', 'task');
+const text = document.getElementById("add-task-text");
+const submitBtn = document.getElementById("add-task-button");
+const taskContainer = document.getElementById("task-container");
 
-//         document.getElementsByClassName("task-container").appendChild(listItem);
-//         console.log("Task was created.");
-//     }
+function addNewTask() {
+    if (text.value == "") {
+        window.alert("Enter in a task!");
+    } else { 
+        const newTask = document.createElement("li");
+        newTask.setAttribute('class', 'task');
+        taskContainer.appendChild(newTask);
 
-    // createCheckBox() { 
-    //     const checkBox = document.createElement("input");
-    //     checkBox.setAttribute('type', 'checkbox');
-    //     checkBox.setAttribute('class', 'task-checkbox');
+        const newCheckBox = document.createElement("input");
+        newCheckBox.setAttribute('type', 'checkbox');
+        newCheckBox.setAttribute('class', 'task-checkbox');
+        newCheckBox.setAttribute('id', `task-checkbox${1}`);
+        newTask.appendChild(newCheckBox);
+        
+        const newLabel = document.createElement("label");
+        newLabel.setAttribute('for', `task-checkbox${1}`);
+        newLabel.setAttribute('class', 'task-text');
+        newLabel.innerText = text.value;
+        newLabel.style.textDecoration = "none";
+        newTask.appendChild(newLabel);
 
-    //     // document.getElementsByClassName("task").append(checkBox);
-    //     console.log("Checkbox was created.");
-    // }
+        const newDeleteBtn = document.createElement("button");
+        newDeleteBtn.setAttribute('type', 'button');
+        newDeleteBtn.setAttribute('class', 'task-delete');
+        newDeleteBtn.innerText = "X";
+        newTask.appendChild(newDeleteBtn);
 
-    // addUserText() { 
-    //     const label = document.createElement("label");
-    //     label.innerText = this.userText;
-    //     label.setAttribute('for', 'task-checkbox'); // for id of task > checkbox
-    //     label.setAttribute('class', 'task-text');
+        text.value = ""; // clear text value from input
 
-    //     // document.getElementsByClassName("task").append(label);
-    //     console.log("User Text was added.");
-    // }
+        newCheckBox.addEventListener('click', () => { // this is a shortcut to function() {} with some changes - dependent on situation, cannot always be used 
+            newLabel.style.textDecoration = "line-through";
+        });
 
-    // createDeleteBtn() {
-    //     const deleteBtn = document.createElement("button");
-    //     deleteBtn.setAttribute('type', 'button');
-    //     deleteBtn.setAttribute('class', 'task-delete');
+        newLabel.style.textDecoration = "none";
 
-    //     // document.getElementsByClassName("task").append(deleteBtn);
-    //     console.log("Delete Button was created.");
-    // }
+        newDeleteBtn.addEventListener('click', () => {
+            taskContainer.removeChild(newTask);
+        });
+    }
+}
 
-    // appendTask() { 
-    //     this.createTask();
-    //     // const checkBox = this.createCheckBox();
-    //     // const addUserText = this.addUserText();
-    //     // const deleteBtn = this.createDeleteBtn();
-    // }
-// }
+text.addEventListener('change', addNewTask); // this allows users to press enter to add new task
+submitBtn.addEventListener('click', addNewTask);
 
-// let task1 = new Task("testing");
-
-// task1.createTask();
-
-// function addNewTask() {
-//     let task = new Task("testing");
-//     task.appendTask();
-// }
-
-// Check from task add
-// const addTask = document.getElementById("user-add-task");
-
-// addTask.addEventListener('change', addNewTask);
-
-const listItem = document.createElement("li");
-listItem.setAttribute('class', 'task');
-document.getElementsByClassName("task-container").appendChild(listItem);
-console.log("Task was created.");
+// text.addEventListener('input', addNewTask); - accidental but can be used for live searching
