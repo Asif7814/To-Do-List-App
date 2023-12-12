@@ -1,0 +1,42 @@
+<!--
+TO DO LIST DOM PLAN
+
+body
+    .tags (switches view of inner container)
+    .current-container
+        .title
+        .input (text)
+
+        .current-container-list (ul)
+            .list items (added through JS) 
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>To Do List</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body> 
+        <div class="container-main">
+            <h1 class="header">TO DO LIST</h1>
+            <div class="add-task">
+                <input type="text" name="user-add-task" id="user-add-task">
+            </div>
+            <ul class="task-container">
+            </ul>
+        </div>
+
+        <script src="app.js"></script>
+    </body>
+</html>
+
+<!-- <li class="task">
+    <input type="checkbox" name="" class="task-checkbox" id="task-2">
+    <label for="task-1" class="task-text">Bye</label>
+    <button type="button" class="task-delete">
+        <p>X</p>
+    </button>
+</li> -->
