@@ -1,7 +1,4 @@
-// const listItem = document.createElement("li");
-// listItem.setAttribute('class', 'task');
-// listItem.target.appendChild(listItem);
-// console.log("Task was created.");
+// will have to restruture parts of this file so that I am able to access the createElement variables properly
 
 const text = document.getElementById("add-task-text");
 const submitBtn = document.getElementById("add-task-button");
@@ -36,17 +33,31 @@ function addNewTask() {
 
         text.value = ""; // clear text value from input
 
+        saveSession();
+
         newCheckBox.addEventListener('click', () => { // this is a shortcut to function() {} with some changes - dependent on situation, cannot always be used 
             newLabel.style.textDecoration = "line-through";
+            saveSession();
         });
 
         newLabel.style.textDecoration = "none";
 
         newDeleteBtn.addEventListener('click', () => {
             taskContainer.removeChild(newTask);
+            saveSession();
         });
     }
 }
+
+function saveSession() { 
+    localStorage.setItem("current-session", taskContainer.innerHTML);
+}
+
+function showSession() { 
+    taskContainer.innerHTML = localStorage.getItem("current-session");
+}
+
+showSession(); // this shows the locally saved data but it currently cannot be accessed since I've structured the JS where i can only access data if i first call the addNewTask function
 
 text.addEventListener('change', addNewTask); // this allows users to press enter to add new task
 submitBtn.addEventListener('click', addNewTask);
