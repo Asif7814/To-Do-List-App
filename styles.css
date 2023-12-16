@@ -127,8 +127,8 @@ button, .task-checkbox:hover {
     height: 1rem;
 }
 
-.task-checkbox:hover {
-    fill: blue;
+.task-checkbox:checked {
+    accent-color: green;
 }
 
 .task-text {
